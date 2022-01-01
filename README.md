@@ -25,8 +25,8 @@ look something like this:
 `notion.so/a1b23c4d-e5f6-7890-g12h-h3456ij7kl89?v=a1b2c3`
 
 Your database ID is the long alphanumeric code here:
-<br>notion.so/My-Page-Name-    <u>a1b23c4de5f67890g12hh3456ij7kl89</u>
-<br>notion.so/    <u>a1b23c4d-e5f6-7890-g12h-h3456ij7kl89</u>    ?v=a1b2c3
+<br>notion.so/My-Page-Name`a1b23c4de5f67890g12hh3456ij7kl89`
+<br>notion.so`a1b23c4d-e5f6-7890-g12h-h3456ij7kl89`?v=a1b2c3
 
 Paste this code: `{"database_id": "Here, inside the quotation marks"}`.
 
