@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+### Added
+* HTML formatting in reminder e-mails
 ### Fixed
 * An error in URL formatting that caused the links to pages in reminder emails not to work
 
