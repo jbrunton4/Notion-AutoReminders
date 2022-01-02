@@ -109,7 +109,7 @@ def read_database(database_id: str, headers: dict) -> requests.Response:
                     send_email(
                         YOUR_EMAIL,
                         f"It's time to study {name}",
-                        f"You set up a reminder to study {name} today. Go to notion.so/{data['id']} to study now."
+                        f"You set up a reminder to study {name} today. Go to notion.so/{entry['id']} to study now."
                     )
 
     # return the response object including the data
