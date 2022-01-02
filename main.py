@@ -69,6 +69,82 @@ def send_email(recipient: str, subject: str, content: str, mode: str = "plain") 
         server.sendmail(EMAIL_SENDER, recipient, object_to_send)
         log("Sent email reminder")
 
+HTML_REMINDER = """
+<html>
+  <head>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+      * {
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .middle {
+        background: #BEBEBE;
+        width: 50%;
+        max-width: 500px;
+        height: 50%;
+        border-radius: 12px;
+        padding: 20px;
+
+        /* DIV centering */
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+
+      .middle #notion-logo {
+        width: 30%;
+
+        /* IMG centering */
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+      }
+
+      .middle h1, .middle h6 {
+        text-align: center;
+      }
+
+      .middle h1 #link-btn {
+        background-color: #e16259;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 20px;
+        padding: 1%;
+        text-decoration: none;
+      }
+      .middle h1 #link-btn:hover {
+        background-color: #cf534a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="middle">
+      <img id="notion-logo" src="https://cdn.icon-icons.com/icons2/2429/PNG/512/notion_logo_icon_147257.png" />
+
+      <h1><b>Your Notion Reminder</b></h1>
+
+      <br />
+      You set up a reminder to study <a href="pageUrlGoesHere">pageNameGoesHere</a>
+      today. Open notion and study now!
+
+      <br />
+      <h1><a id="link-btn" href="pageUrlGoesHere">Study Now!</button></h1>
+
+      <h6>This service is not affiliated with Notion.
+
+    </div>
+  </body>
+</html>
+
+"""
+
 
 def read_database(database_id: str, headers: dict) -> requests.Response:
     """
@@ -106,10 +182,14 @@ def read_database(database_id: str, headers: dict) -> requests.Response:
                 log("Reminder due today")
                 if datetime.datetime.now().hour == 9 and datetime.datetime.now().minute == 0:  # if it's 9 AM on reminder
                     log("Reminder due now")
+                    page_url = f"https://www.notion.so/{entry['id'].replace('-', '')}"
+                    outgoing_html = HTML_REMINDER.replace("pageNameGoesHere", name)\
+                        .replace("pageUrlGoesHere", page_url)
                     send_email(
                         YOUR_EMAIL,
                         f"It's time to study {name}",
-                        f"You set up a reminder to study {name} today. Go to notion.so/{entry['id']} to study now."
+                        outgoing_html,
+                        "html"
                     )
 
     # return the response object including the data
