@@ -1,9 +1,14 @@
 # Notion-AutoReminders
+Sends email reminders about notion pages routinely after some date property.
+
+The original inspiration for this project was to make a service to provide
+automated reminders to review study notes after they were created, based on
+Ebbinghaus' Curve of Forgetting. 
 
 ## How to use
-There are a few pieces of information that you need to give the app in order for it to work. 
+There are a few pieces of information that you need to give the app in order for it to work.
 
-First, open the file named `config.json` in your favourite text editor. 
+First, open the file named `config.json` in your favourite text editor.
 Inside this file, you need to set the following values:
 
 * database_id
@@ -43,15 +48,15 @@ Now, your token should be at the top of the page. Click "show" and copy it into 
 [Create an integration here.](https://www.notion.so/my-integrations/)
 
 ### date_property_name
-The name of the date property on which the page was first studied. 
-This is case-sensitive, so remember to use capital letters where appropriate. 
+The name of the date property on which the page was first studied.
+This is case-sensitive, so remember to use capital letters where appropriate.
 
 ### email_addr and email_password
-These are an email address and password for a gmail account. 
+These are an email address and password for a gmail account.
 
-For the app to work, you will need to enable "Less Secure Apps" on your 
-Google account - since this required 2-factor authentication to be turned off, 
-you shouldn't use your personal email account. 
+For the app to work, you will need to enable "Less Secure Apps" on your
+Google account - since this required 2-factor authentication to be turned off,
+you shouldn't use your personal email account.
 
 [Enable less secure apps here.](https://myaccount.google.com/lesssecureapps)
 
@@ -64,5 +69,5 @@ would like to be reminded on. For example, if you want to be reminded
 1, 2, and 7 days after, you would set it to `{"reminder_intervals":[1, 2, 7]}`.
 
 ## How to keep it running
-In order for your reminders to be sent, the app needs to be constantly running. 
-You can host the script 24/7 for free using Heroku, or simply run the EXE on your computer. 
+In order for your reminders to be sent, the app needs to be constantly running.
+You can host the script 24/7 for free using Heroku, or simply run the EXE on your computer.
